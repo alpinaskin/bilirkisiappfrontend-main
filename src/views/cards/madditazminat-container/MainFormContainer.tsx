@@ -51,7 +51,6 @@ const MainFormContainer = () => {
               Bilirkişi Maddi Tazminat Hesaplama
             </Typography>
             <Typography variant="subtitle2" align="center" sx={{ mt: 2 }}>
-              .
             </Typography>
           </Box>
           <Stepper activeStep={activeStep} sx={{ py: 3 }} alternativeLabel>

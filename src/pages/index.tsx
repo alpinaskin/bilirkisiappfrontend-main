@@ -27,10 +27,7 @@ const Dashboard = () => {
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <h1>Tazminat Rapor Listesi</h1>
-          <p>{JSON.stringify(raporlar, null, 2)}</p>
-        </Grid>
-        <Grid item xs={12} md={12} lg={12}>
-          <MaddiTazminat />
+          <p>{/**JSON.stringify(raporlar, null, 2)**/}</p>
         </Grid>
         <Grid item xs={12}>
           <Table />

@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import TableContainer from "@mui/material/TableContainer";
 
 // ** Model imports
-import RaporBilgileri from "src/models/RaporBilgileri";
+import {RaporBilgileri} from "src/models/RaporBilgileri";
 
 const rows: RaporBilgileri[] = [
   {
@@ -19,7 +19,7 @@ const rows: RaporBilgileri[] = [
     davaciAdi: "Mehmet Yalkın",
     davaciVekili: "Av. Mahmut Er",
     davaliVekili: "Av. Ediz Akın",
-    bilirkisi: "Sally Quinn",
+    bilirkisi: "Ahmet Gönen",
     raporunDuzenlenecegiMakam: "Ankara 1. İş Mahkemesi",
     esasNo: "2020/13"
   }
@@ -44,7 +44,7 @@ const RaporTable = () => {
           </TableHead>
 
           <TableBody>
-            {rows.map((row: UcretBilgileri) => (
+            {rows.map((row: RaporBilgileri) => (
               <TableRow
                 hover
                 key={row.davaliAdi}

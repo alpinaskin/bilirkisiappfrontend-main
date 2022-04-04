@@ -169,7 +169,7 @@ export default function FirstStep() {
           color="primary"
           onClick={!isError() ? handleNext : () => null}
         >
-          İleri
+          İLERİ
         </Button>
       </Box>
     </>

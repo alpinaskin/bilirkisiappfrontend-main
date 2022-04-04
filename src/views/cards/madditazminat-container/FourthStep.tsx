@@ -158,9 +158,9 @@ export default function FourthStep() {
             helperText={kazaliCinsiyet.error}
             required={kazaliCinsiyet.required}
           >
-            <option value=""> </option>
-            <option value={0}>Erkek</option>
-            <option value={1}>Kadın</option>
+            <option value=''></option>
+            <option value={"true"}>Erkek</option>
+            <option value={"false"}>Kadın</option>
           </TextField>
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -181,8 +181,8 @@ export default function FourthStep() {
             required={kazalininMedeniHali.required}
           >
             <option value=""> </option>
-            <option value={false}>Bekar</option>
-            <option value={true}>Evli</option>
+            <option value={"false"}>Bekar</option>
+            <option value={"true"}>Evli</option>
           </TextField>
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -203,8 +203,8 @@ export default function FourthStep() {
             required={kazalininEsiCalisiyor.required}
           >
             <option value=""> </option>
-            <option value={false}>Çalışmıyor</option>
-            <option value={true}>Çalışıyor</option>
+            <option value={"false"}>Çalışmıyor</option>
+            <option value={"true"}>Çalışıyor</option>
           </TextField>
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -226,7 +226,7 @@ export default function FourthStep() {
 
       <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 3 }}>
         <Button onClick={handleBack} sx={{ mr: 1 }}>
-          Geri
+          GERİ
         </Button>
         <Button
           variant="contained"
@@ -234,7 +234,7 @@ export default function FourthStep() {
           color="primary"
           onClick={!isError() ? handleNext : () => null}
         >
-          İleri
+          İLERİ
         </Button>
       </Box>
     </>

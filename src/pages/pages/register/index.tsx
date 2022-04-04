@@ -109,9 +109,7 @@ const RegisterPage = () => {
       values.lastName,
       values.email,
       values.password
-    );
-
-    //.then(() => router.push("/pages/login"));
+    ).then(() => router.push('/pages/login'));
   };
 
   return (

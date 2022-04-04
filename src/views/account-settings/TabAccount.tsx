@@ -1,6 +1,9 @@
 // ** React Imports
 import { useState, ElementType, ChangeEvent, SyntheticEvent } from 'react'
 
+// next Imports
+import { useRouter } from 'next/router'
+
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
@@ -18,8 +21,13 @@ import CardContent from '@mui/material/CardContent'
 import FormControl from '@mui/material/FormControl'
 import Button, { ButtonProps } from '@mui/material/Button'
 
+// ** Service Imports
+import AuthService from 'src/services/AuthService'
+
 // ** Icons Imports
 import Close from 'mdi-material-ui/Close'
+import { useEffect } from 'react';
+import { User } from './../../models/User';
 
 const ImgStyled = styled('img')(({ theme }) => ({
   width: 120,
@@ -49,6 +57,13 @@ const TabAccount = () => {
   // ** State
   const [openAlert, setOpenAlert] = useState<boolean>(true)
   const [imgSrc, setImgSrc] = useState<string>('/images/avatars/1.png')
+  const [user, setUser] = useState<User>({
+    name: '',
+    lastName: '',
+    email: ''
+  })
+
+  const router = useRouter();
 
   const onChange = (file: ChangeEvent) => {
     const reader = new FileReader()
@@ -60,6 +75,25 @@ const TabAccount = () => {
     }
   }
 
+
+  useEffect(()=> {
+    setUser(AuthService.getCurrentUser());
+    if(user == null)
+      {
+        router.push('/pages/login')
+      }
+  }, [])
+
+  const handleChange = (prop: keyof User) => (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    setUser({ ...user, [prop]: event.target.value });
+  };
+
+  const reset = () => {
+    setUser(AuthService.getCurrentUser());
+  }
+
   return (
     <CardContent>
       <form>
@@ -68,7 +102,7 @@ const TabAccount = () => {
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <ImgStyled src={imgSrc} alt='Profile Pic' />
               <Box>
-                <ButtonStyled component='label' variant='contained' htmlFor='account-settings-upload-image'>
+                {/* <ButtonStyled component='label' variant='contained' htmlFor='account-settings-upload-image'>
                   Upload New Photo
                   <input
                     hidden
@@ -77,61 +111,60 @@ const TabAccount = () => {
                     accept='image/png, image/jpeg'
                     id='account-settings-upload-image'
                   />
-                </ButtonStyled>
-                <ResetButtonStyled color='error' variant='outlined' onClick={() => setImgSrc('/images/avatars/1.png')}>
+                </ButtonStyled> */}
+                {/* <ResetButtonStyled color='error' variant='outlined' onClick={() => setImgSrc('/images/avatars/1.png')}>
                   Reset
-                </ResetButtonStyled>
+                </ResetButtonStyled> */}
                 <Typography variant='body2' sx={{ marginTop: 5 }}>
-                  Allowed PNG or JPEG. Max size of 800K.
+                  Üye bilgilerinizi buradan değiştirebilirsiniz
                 </Typography>
               </Box>
             </Box>
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <TextField fullWidth label='Username' placeholder='johnDoe' defaultValue='johnDoe' />
+            <TextField fullWidth label='İsim' placeholder='' value={user.name} onChange={handleChange("name")}/>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField fullWidth label='Name' placeholder='John Doe' defaultValue='John Doe' />
+            <TextField fullWidth label='Soyisim' placeholder='' value={user.lastName} onChange={handleChange("lastName")} />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
               type='email'
-              label='Email'
-              placeholder='johnDoe@example.com'
-              defaultValue='johnDoe@example.com'
+              label='Eposta'
+              placeholder=''
+              value={user.email}
+              onChange={handleChange("email")}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
-              <InputLabel>Role</InputLabel>
+              <InputLabel>Kullanıcı Rolü</InputLabel>
               <Select label='Role' defaultValue='admin'>
                 <MenuItem value='admin'>Admin</MenuItem>
-                <MenuItem value='author'>Author</MenuItem>
-                <MenuItem value='editor'>Editor</MenuItem>
-                <MenuItem value='maintainer'>Maintainer</MenuItem>
-                <MenuItem value='subscriber'>Subscriber</MenuItem>
+                <MenuItem value='author'>Üye</MenuItem>
+                <MenuItem value='editor'>Özel Üye</MenuItem>
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
-              <InputLabel>Status</InputLabel>
+              <InputLabel>Durum</InputLabel>
               <Select label='Status' defaultValue='active'>
-                <MenuItem value='active'>Active</MenuItem>
-                <MenuItem value='inactive'>Inactive</MenuItem>
-                <MenuItem value='pending'>Pending</MenuItem>
+                <MenuItem value='active'>Aktif</MenuItem>
+                <MenuItem value='inactive'>İnaktif</MenuItem>
+                <MenuItem value='pending'>Bekliyor</MenuItem>
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField fullWidth label='Company' placeholder='ABC Pvt. Ltd.' defaultValue='ABC Pvt. Ltd.' />
+            <TextField fullWidth label='Meslek' placeholder='' defaultValue='Bilirkişi' />
           </Grid>
 
           {openAlert ? (
             <Grid item xs={12} sx={{ mb: 3 }}>
-              <Alert
+              {/* <Alert
                 severity='warning'
                 sx={{ '& a': { fontWeight: 400 } }}
                 action={
@@ -144,16 +177,16 @@ const TabAccount = () => {
                 <Link href='/' onClick={(e: SyntheticEvent) => e.preventDefault()}>
                   Resend Confirmation
                 </Link>
-              </Alert>
+              </Alert> */}
             </Grid>
           ) : null}
 
           <Grid item xs={12}>
             <Button variant='contained' sx={{ marginRight: 3.5 }}>
-              Save Changes
+              Değişiklikleri Kaydet
             </Button>
-            <Button type='reset' variant='outlined' color='secondary'>
-              Reset
+            <Button type='reset' variant='outlined' color='secondary' onClick={reset}>
+              Sıfırla
             </Button>
           </Grid>
         </Grid>

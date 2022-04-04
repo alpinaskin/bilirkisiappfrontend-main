@@ -45,7 +45,9 @@
     "react-dom": "18.0.0",
     "react-perfect-scrollbar": "^1.5.8",
     "react-popper": "^2.2.5",
-    "react-scripts": "5.0.0"
+    "react-scripts": "5.0.0",
+    "docx": "7.3.0",
+    "file-saver": "2.0.5"
   },
   "devDependencies": {
     "@types/node": "16.11.11",

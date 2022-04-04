@@ -6,8 +6,7 @@ export const initialValues: ValidationSchema = {
     error: "",
     validate: "text",
     minLength: 2,
-    maxLength: 20,
-    helperText: "Custom error message"
+    maxLength: 20
   },
   davaciAdi: {
     value: "Mehmet Çakır",
@@ -146,21 +145,23 @@ export const initialValues: ValidationSchema = {
     validate: "decimal"
   },
   kazaliCinsiyet: {
-    value: true,
-    error: ""
+    value: "true",
+    error: "",
+    required: true
   },
   kazalininMedeniHali: {
-    value: true,
+    value: "true",
     error: "",
     required: true
   },
   kazalininEsiCalisiyor: {
-    value: true,
+    value: "false",
     error: "",
     required: true
   },
   kazalininCocukSayisi: {
     value: 3,
-    error: ""
+    error: "",
+    required: true
   }
 };

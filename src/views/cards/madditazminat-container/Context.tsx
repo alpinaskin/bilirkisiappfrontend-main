@@ -140,33 +140,33 @@ export function StepsProvider({ children }: ProviderProps) {
 
     let error = "";
 
-    if (required && !fieldValue) error = "This field is required";
+    if (required && !fieldValue) error = "Bu alan zorunludur";
     if (minLength && value && value.length < minLength)
-      error = `Minimum ${minLength} characters is required.`;
+      error = `En az ${minLength} karakter giriniz.`;
     if (maxLength && value && value.length > maxLength)
-      error = "Maximum length exceeded!";
+      error = "Karakter sınırını aştınız!";
     if (validate) {
       switch (validate) {
         case "text":
           if (value && !isText.test(value))
-            error = helperText || "This field accepts text only.";
+            error = helperText || "Geçerli metin girdiğinizden emin olun.";
           break;
 
         case "number":
           if (value && !isNumber.test(value))
-            error = helperText || "This field accepts numbers only.";
+            error = helperText || "Sadece sayı giriniz.";
           break;
 
         case "email":
           if (value && !isEmail.test(value))
-            error = helperText || "Please enter a valid email address.";
+            error = helperText || "Geçirli bir eposta adresi giriniz.";
           break;
 
         case "phone":
           if (value && !isPhone.test(value))
             error =
               helperText ||
-              "Please enter a valid phone number. i.e: xxx-xxx-xxxx";
+              "Geçerli bir telefon numarası giriniz. örn: xxx-xxx-xxxx";
           break;
 
         case "decimal":
@@ -176,15 +176,15 @@ export function StepsProvider({ children }: ProviderProps) {
 
         case "zip":
           if (value && !isZip.test(value))
-            error = helperText || "Please enter a valid zip code.";
+            error = helperText || "Geçerli bir posta kodu girin.";
           break;
 
         case "checkbox":
-          if (!checked) error = helperText || "Please provide a valid value.";
+          if (!checked) error = helperText || "Geçerli bir değer girin.";
           break;
 
         case "select":
-          if (!value) error = helperText || "Please select a value.";
+          if (!value) error = helperText || "Listeden seçiminizi yapın.";
           break;
 
         default:

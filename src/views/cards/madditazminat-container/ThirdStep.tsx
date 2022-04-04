@@ -166,7 +166,7 @@ export default function SecondStep() {
 
       <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 3 }}>
         <Button onClick={handleBack} sx={{ mr: 1 }}>
-          Geri
+          GERİ
         </Button>
         <Button
           variant="contained"
@@ -174,7 +174,7 @@ export default function SecondStep() {
           color="primary"
           onClick={!isError() ? handleNext : () => null}
         >
-          İleri
+          İLERİ
         </Button>
       </Box>
     </>
