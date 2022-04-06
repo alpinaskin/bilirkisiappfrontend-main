@@ -183,10 +183,10 @@ const TabAccount = () => {
 
           <Grid item xs={12}>
             <Button variant='contained' sx={{ marginRight: 3.5 }}>
-              Değişiklikleri Kaydet
+              DEĞİŞİKLİKLERİ KAYDET
             </Button>
             <Button type='reset' variant='outlined' color='secondary' onClick={reset}>
-              Sıfırla
+              SIFIRLA
             </Button>
           </Grid>
         </Grid>

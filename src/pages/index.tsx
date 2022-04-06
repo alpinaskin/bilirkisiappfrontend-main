@@ -1,27 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from 'react'
 // ** MUI Imports
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid'
 
 // ** HTTP Request Imports
 //import UserService from "src/services/UserService";
 
 // ** Icons Imports
-import Poll from "mdi-material-ui/Poll";
+import Poll from 'mdi-material-ui/Poll'
 
 // ** Styled Component Import
-import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
+import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 
 // ** Demo Components Imports
-import Table from "src/views/dashboard/Table";
-import MaddiTazminat from "src/views/dashboard/MaddiTazminat";
-import SalesByCountries from "src/views/dashboard/SalesByCountries";
+import Table from 'src/views/dashboard/Table'
+import SalesByCountries from 'src/views/dashboard/SalesByCountries'
+import { useRouter } from 'next/router'
 
-// { raporlar }
 const Dashboard = () => {
-  const [raporlar, setRaporlar] = useState("");
-  //const json = UserService.getRaporlar();
-  //setRaporlar(json);
-
   return (
     <ApexChartWrapper>
       <Grid container spacing={6}>
@@ -37,10 +32,10 @@ const Dashboard = () => {
         </Grid>
       </Grid>
     </ApexChartWrapper>
-  );
-};
+  )
+}
 
-// export async function getStaticProps() {
+export async function getStaticProps() {
 //   const json = UserService.getRaporlar();
 //   //const json = JSON.stringify();
 //   console.log(json);
@@ -49,6 +44,11 @@ const Dashboard = () => {
 //       raporlar: json._embedded.tazminatRaporList
 //     }
 //   };
-// }
+  return {
+    redirect: {
+      destination: "/bilirkisi-rapor",
+    },
+  }
+}
 
-export default Dashboard;
+export default Dashboard

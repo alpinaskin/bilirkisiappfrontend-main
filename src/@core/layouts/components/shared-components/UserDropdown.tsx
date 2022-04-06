@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, SyntheticEvent, Fragment } from 'react'
+import { useState, SyntheticEvent, Fragment, useEffect } from 'react'
 
 // ** Next Import
 import { useRouter } from 'next/router'
@@ -14,14 +14,15 @@ import MenuItem from '@mui/material/MenuItem'
 import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 
+// ** Service Imports
+import AuthService from 'src/services/AuthService'
+
+// ** Model Imports
+
 // ** Icons Imports
 import CogOutline from 'mdi-material-ui/CogOutline'
-import CurrencyUsd from 'mdi-material-ui/CurrencyUsd'
-import EmailOutline from 'mdi-material-ui/EmailOutline'
 import LogoutVariant from 'mdi-material-ui/LogoutVariant'
 import AccountOutline from 'mdi-material-ui/AccountOutline'
-import MessageOutline from 'mdi-material-ui/MessageOutline'
-import HelpCircleOutline from 'mdi-material-ui/HelpCircleOutline'
 
 // ** Styled Components
 const BadgeContentSpan = styled('span')(({ theme }) => ({
@@ -38,6 +39,12 @@ const UserDropdown = () => {
 
   // ** Hooks
   const router = useRouter()
+
+  const [user, setUser] = useState({name: "", lastName: "", email: "", roles: ""})
+
+  useEffect(()=> {
+    setUser(AuthService.getCurrentUser())
+  }, [!user])
 
   const handleDropdownOpen = (event: SyntheticEvent) => {
     setAnchorEl(event.currentTarget)
@@ -74,7 +81,7 @@ const UserDropdown = () => {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       >
         <Avatar
-          alt='John Doe'
+          alt={user.name}
           onClick={handleDropdownOpen}
           sx={{ width: 40, height: 40 }}
           src='/images/avatars/1.png'
@@ -95,12 +102,12 @@ const UserDropdown = () => {
               badgeContent={<BadgeContentSpan />}
               anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             >
-              <Avatar alt='John Doe' src='/images/avatars/1.png' sx={{ width: '2.5rem', height: '2.5rem' }} />
+              <Avatar alt={user.name} src='/images/avatars/1.png' sx={{ width: '2.5rem', height: '2.5rem' }} />
             </Badge>
             <Box sx={{ display: 'flex', marginLeft: 3, alignItems: 'flex-start', flexDirection: 'column' }}>
-              <Typography sx={{ fontWeight: 600 }}>John Doe</Typography>
+              <Typography sx={{ fontWeight: 600 }}>{user.name} {user.lastName}</Typography>
               <Typography variant='body2' sx={{ fontSize: '0.8rem', color: 'text.disabled' }}>
-                Admin
+                { Array.from(user.roles).pop() == 'ROLE_ADMIN' ? 'Admin' : 'Üye'}
               </Typography>
             </Box>
           </Box>

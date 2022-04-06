@@ -15,6 +15,9 @@ import FormControl from '@mui/material/FormControl'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import InputAdornment from '@mui/material/InputAdornment'
 
+// ** Service Imports
+import AuthService from 'src/services/AuthService'
+
 // ** Icons Imports
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import KeyOutline from 'mdi-material-ui/KeyOutline'
@@ -74,6 +77,14 @@ const TabSecurity = () => {
     event.preventDefault()
   }
 
+  const handleSubmit = () => {
+    let user;
+    if(values.newPassword == values.confirmNewPassword)
+      user = AuthService.getCurrentUser();
+      
+      AuthService.changePassword(user.email, values.currentPassword, values.confirmNewPassword)
+  }
+
   return (
     <form>
       <CardContent sx={{ paddingBottom: 0 }}>
@@ -82,9 +93,9 @@ const TabSecurity = () => {
             <Grid container spacing={5}>
               <Grid item xs={12} sx={{ marginTop: 4.75 }}>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor='account-settings-current-password'>Current Password</InputLabel>
+                  <InputLabel htmlFor='account-settings-current-password'>Eski Şifreniz</InputLabel>
                   <OutlinedInput
-                    label='Current Password'
+                    label='Şifre'
                     value={values.currentPassword}
                     id='account-settings-current-password'
                     type={values.showCurrentPassword ? 'text' : 'password'}
@@ -107,9 +118,9 @@ const TabSecurity = () => {
 
               <Grid item xs={12} sx={{ marginTop: 6 }}>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor='account-settings-new-password'>New Password</InputLabel>
+                  <InputLabel htmlFor='account-settings-new-password'>Yeni Şifre</InputLabel>
                   <OutlinedInput
-                    label='New Password'
+                    label='Yeni Şifre'
                     value={values.newPassword}
                     id='account-settings-new-password'
                     onChange={handleNewPasswordChange('newPassword')}
@@ -132,9 +143,9 @@ const TabSecurity = () => {
 
               <Grid item xs={12}>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor='account-settings-confirm-new-password'>Confirm New Password</InputLabel>
+                  <InputLabel htmlFor='account-settings-confirm-new-password'>Yeni Şifrenizi Onaylayın</InputLabel>
                   <OutlinedInput
-                    label='Confirm New Password'
+                    label='Yeni Şifre Onay'
                     value={values.confirmNewPassword}
                     id='account-settings-confirm-new-password'
                     type={values.showConfirmNewPassword ? 'text' : 'password'}
@@ -171,40 +182,9 @@ const TabSecurity = () => {
       <Divider sx={{ margin: 0 }} />
 
       <CardContent>
-        <Box sx={{ mt: 1.75, display: 'flex', alignItems: 'center' }}>
-          <KeyOutline sx={{ marginRight: 3 }} />
-          <Typography variant='h6'>Two-factor authentication</Typography>
-        </Box>
-
-        <Box sx={{ mt: 5.75, display: 'flex', justifyContent: 'center' }}>
-          <Box
-            sx={{
-              maxWidth: 368,
-              display: 'flex',
-              textAlign: 'center',
-              alignItems: 'center',
-              flexDirection: 'column'
-            }}
-          >
-            <Avatar
-              variant='rounded'
-              sx={{ width: 48, height: 48, color: 'common.white', backgroundColor: 'primary.main' }}
-            >
-              <LockOpenOutline sx={{ fontSize: '1.75rem' }} />
-            </Avatar>
-            <Typography sx={{ fontWeight: 600, marginTop: 3.5, marginBottom: 3.5 }}>
-              Two factor authentication is not enabled yet.
-            </Typography>
-            <Typography variant='body2'>
-              Two-factor authentication adds an additional layer of security to your account by requiring more than just
-              a password to log in. Learn more.
-            </Typography>
-          </Box>
-        </Box>
-
         <Box sx={{ mt: 11 }}>
-          <Button variant='contained' sx={{ marginRight: 3.5 }}>
-            Save Changes
+          <Button variant='contained' sx={{ marginRight: 3.5 }} onClick={handleSubmit}>
+            DEĞİŞİKLİKLERİ KAYDET
           </Button>
           <Button
             type='reset'
@@ -212,7 +192,7 @@ const TabSecurity = () => {
             color='secondary'
             onClick={() => setValues({ ...values, currentPassword: '', newPassword: '', confirmNewPassword: '' })}
           >
-            Reset
+            Sıfırla
           </Button>
         </Box>
       </CardContent>

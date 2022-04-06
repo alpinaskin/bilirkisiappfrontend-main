@@ -1,8 +1,8 @@
 export interface EkBilgiler {
   davaliKusurOrani: number;
   maluliyetOrani: number;
-  sgkAyligiOrani: number;
-  geciciIsGoremezlikOrani: number;
+  sgkAyligiMiktari: number;
+  geciciIsGoremezlikMiktari: number;
   maddiTazminatIstek: number;
   kazaliCinsiyet: boolean;
   kazalininCocukSayisi: number;

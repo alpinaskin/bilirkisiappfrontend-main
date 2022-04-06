@@ -259,7 +259,7 @@ const LoginPage = () => {
               sx={{ marginBottom: 7 }}
               onClick={handleSubmit}
             >
-              Giriş Yap
+              GİRİŞ YAP
             </Button>
             <Box
               sx={{

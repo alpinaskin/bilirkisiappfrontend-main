@@ -67,7 +67,7 @@ const Error404 = () => {
             Sayfa Bulunamadı! ⚠️
           </Typography>
           <Typography variant="body2">
-            We couldn&prime;t find the page you are looking for.
+            Aradığınız sayfayı bulamadık.
           </Typography>
         </BoxWrapper>
         <Img

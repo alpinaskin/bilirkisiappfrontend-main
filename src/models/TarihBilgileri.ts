@@ -1,8 +1,8 @@
 export interface TarihBilgileri {
-  raporTarihi: Date;
-  davaTarihi: Date;
-  kazaliDogumTarihi: Date;
-  kazaTarihi: Date;
-  ucretTarihi: Date;
-  istirahatBitisTarihi: Date;
+  raporTarihi: string;
+  davaTarihi: string;
+  kazaliDogumTarihi: string;
+  kazaTarihi: string;
+  ucretTarihi: string;
+  istirahatBitisTarihi: string;
 }

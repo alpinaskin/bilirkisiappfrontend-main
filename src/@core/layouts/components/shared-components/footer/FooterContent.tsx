@@ -29,21 +29,6 @@ const FooterContent = () => {
           >
             MIT License
           </Link>
-          <Link target='_blank' href='https://themeselection.com/'>
-            More Themes
-          </Link>
-          <Link
-            target='_blank'
-            href='https://github.com/themeselection/materio-mui-react-nextjs-admin-template-free/blob/main/README.md'
-          >
-            Documentation
-          </Link>
-          <Link
-            target='_blank'
-            href='https://github.com/themeselection/materio-mui-react-nextjs-admin-template-free/issues'
-          >
-            Support
-          </Link>
         </Box>
       )}
     </Box>

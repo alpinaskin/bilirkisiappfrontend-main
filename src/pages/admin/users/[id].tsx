@@ -1,9 +1,12 @@
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react';
+import UserProfile from 'src/views/admin/user/UserProfile'
+// ** Service Imports
+import UserService from 'src/services/UserService'
 
 const Users = () => {
-  const router = useRouter();
-  const { id } = router.query;
-  return <p>Üye Id'si: {id}</p>;
-};
 
-export default Users;
+  return <UserProfile />
+}
+
+export default Users

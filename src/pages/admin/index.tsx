@@ -5,15 +5,20 @@ import RaporTable from "src/views/dashboard/RaporTable";
 
 // ** Styled Component Import
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
+import { Typography } from "@mui/material";
+import RolTable from "src/views/admin/RolTable";
 
 const Admin = () => {
   return (
     <ApexChartWrapper>
       <Grid container spacing={6}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <Card>
             <CardContent>
-              <h2>Admin panel</h2>
+              <Typography variant="h5" >
+                Roller
+              </Typography>
+              <RolTable />
             </CardContent>
           </Card>
         </Grid>

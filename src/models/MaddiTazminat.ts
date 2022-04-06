@@ -2,10 +2,9 @@ import { RaporBilgileri } from 'src/models/RaporBilgileri';
 import { TarihBilgileri } from './TarihBilgileri'; 
 import { UcretBilgileri } from './UcretBilgileri';
 import { EkBilgiler } from './EkBilgiler';
+import { TazminatRapor } from './TazminatRapor';
 
 export interface MaddiTazminat {
-    raporBilgileri: RaporBilgileri;
-    tarihBilgileri: TarihBilgileri;
-    ucretBilgileri: UcretBilgileri;
-    ekBilgiler: EkBilgiler;
+    id: string | number;
+    tazminatRapor: TazminatRapor
 }

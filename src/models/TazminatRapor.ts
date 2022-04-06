@@ -1,8 +1,12 @@
-import RaporBilgileri from "src/models/RaporBilgileri";
+import { RaporBilgileri } from "./RaporBilgileri";
+import { EkBilgiler } from "./EkBilgiler";
+import { TarihBilgileri } from "./TarihBilgileri";
+import { UcretBilgileri } from "./UcretBilgileri";
 
 export interface TazminatRapor {
+  id?: string | number;
   raporBilgileri: RaporBilgileri;
-  ekBilgiler: EkBilgiler;
+  ekBilgiler?: EkBilgiler;
   tarihBilgileri: TarihBilgileri;
-  ucretBilgileri: UcretBilgileriS;
+  ucretBilgileri?: UcretBilgileri;
 }
