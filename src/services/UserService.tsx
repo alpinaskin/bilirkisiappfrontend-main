@@ -2,7 +2,7 @@ import axios from 'axios'
 import { User } from 'src/models/User'
 import authHeader from 'src/services/AuthHeader'
 
-const API_URL = 'http://localhost:8080/api/v1/'
+const API_URL = 'https://springbilirkisiapp.herokuapp.com/api/v1/'
 
 const getRaporlar = () => {
   return axios.get(API_URL + 'raporlar', { headers: authHeader() })
