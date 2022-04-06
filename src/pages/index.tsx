@@ -30,7 +30,7 @@ const Dashboard = () => {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 //   const json = UserService.getRaporlar();
 //   //const json = JSON.stringify();
 //   console.log(json);
