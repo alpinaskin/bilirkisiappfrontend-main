@@ -26,7 +26,7 @@ const Users = () => {
         if (401 === err.response.status) router.push('/pages/login')
       })
     console.log(users)
-  }, [setUsers])
+  }, [router, setUsers, users])
 
   return (
     <>

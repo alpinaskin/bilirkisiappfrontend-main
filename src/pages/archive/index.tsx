@@ -48,7 +48,7 @@ const Archive = () => {
       setMaddiTazminat(maddiTazminatList)
       console.log(maddiTazminat)
     })
-  }, [router.isReady])
+  }, [maddiTazminat, router.isReady])
 
   return (
     <>

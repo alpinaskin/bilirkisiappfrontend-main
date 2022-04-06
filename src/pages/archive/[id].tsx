@@ -62,7 +62,7 @@ const Archive = () => {
       setUcretBilgileri(response.data.tazminatRapor.ucretBilgileri)
       setEkbilgiler(response.data.tazminatRapor.ekBilgiler)
     })
-  }, [router.isReady])
+  }, [id, router.isReady])
 
   return (
     <>

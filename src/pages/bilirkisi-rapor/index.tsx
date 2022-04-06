@@ -9,7 +9,8 @@ const BilirkisiRapor = () => {
 
   useEffect(() =>{
     authCheck()
-  }, [])
+  }, [authCheck])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function authCheck() {
     // redirect to login page if accessing a private page and not logged in 
     console.log(AuthService.getCurrentUser())
