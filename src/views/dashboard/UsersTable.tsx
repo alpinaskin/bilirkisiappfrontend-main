@@ -137,7 +137,7 @@ const UsersTable = ({users}:any) => {
             </TableHead>
             <TableBody>
               
-             {users.map((user) => (
+             {users.map((user:any) => (
               <TableRow hover key={user.id} sx={{ '&:last-of-type td, &:last-of-type th': { border: 0 } }}>
                 <TableCell sx={{ py: theme => `${theme.spacing(0.5)} !important` }}>
                   <Box sx={{ display: 'flex', flexDirection: 'column' }}>
