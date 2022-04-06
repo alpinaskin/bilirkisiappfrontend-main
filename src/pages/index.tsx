@@ -1,12 +1,8 @@
-import { useEffect, useState } from 'react'
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
 
 // ** HTTP Request Imports
 //import UserService from "src/services/UserService";
-
-// ** Icons Imports
-import Poll from 'mdi-material-ui/Poll'
 
 // ** Styled Component Import
 import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
@@ -14,7 +10,6 @@ import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 // ** Demo Components Imports
 import Table from 'src/views/dashboard/Table'
 import SalesByCountries from 'src/views/dashboard/SalesByCountries'
-import { useRouter } from 'next/router'
 
 const Dashboard = () => {
   return (

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 import UsersTable from 'src/views/dashboard/UsersTable'
 
 // ** Service Imports

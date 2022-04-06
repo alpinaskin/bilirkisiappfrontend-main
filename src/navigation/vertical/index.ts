@@ -1,12 +1,11 @@
 // ** Icon imports
-import HomeOutline from "mdi-material-ui/HomeOutline";
 import AccountCogOutline from "mdi-material-ui/AccountCogOutline";
 import AccountTie from "mdi-material-ui/AccountTie";
 import AccountGroup from "mdi-material-ui/AccountGroup";
 import FileDocumentMultipleOutline from "mdi-material-ui/FileDocumentMultipleOutline";
 import InformationVariant from "mdi-material-ui/InformationVariant";
-import AccountStarOutline from "mdi-material-ui/AccountStarOutline";
 import ArchiveSearchOutline from "mdi-material-ui/ArchiveSearchOutline";
+
 // ** Type import
 import { VerticalNavItemsType } from "src/@core/layouts/types";
 
@@ -37,11 +36,6 @@ const navigation = (): VerticalNavItemsType => {
       icon: ArchiveSearchOutline,
       path: "/archive"
     },
-    // {
-    //   title: "Özel Üyelik",
-    //   icon: AccountStarOutline,
-    //   path: "/membership"
-    // },
     { sectionTitle: "YÖNETİCİ" },
     {
       title: "Panel",

@@ -33,8 +33,8 @@ import EyeOutline from "mdi-material-ui/EyeOutline";
 import EyeOffOutline from "mdi-material-ui/EyeOffOutline";
 
 // ** Request imports
-import axios from "axios";
 import AuthService from "src/services/AuthService";
+
 // ** Configs
 import themeConfig from "src/configs/themeConfig";
 

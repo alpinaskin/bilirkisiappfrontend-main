@@ -1,12 +1,9 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { RaporBilgileri } from 'src/models/RaporBilgileri'
-import { TarihBilgileri } from 'src/models/TarihBilgileri'
 
 // ** Service Imports
 import MaddiTazminatService from 'src/services/MaddiTazminatService'
 import { MaddiTazminat } from 'src/models/MaddiTazminat'
-import { TazminatRapor } from './../../models/TazminatRapor'
 import { Button, Grid, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 
 const Archive = () => {
@@ -46,11 +43,9 @@ const Archive = () => {
     if (!router.isReady) return
 
     MaddiTazminatService.getAllMaddiTazminat().then(response => {
-      let maddiTazminatList = response.data._embedded.maddiTazminatList
+      const maddiTazminatList = response.data._embedded.maddiTazminatList
       console.log(maddiTazminatList)
       setMaddiTazminat(maddiTazminatList)
-      // setRaporBilgileri(response.data._embedded.maddiTazminatList.tazminatRapor.raporBilgileri)
-      // setTarihBilgileri(response.data._embedded.maddiTazminatList.tazminatRapor.tarihBilgileri)
       console.log(maddiTazminat)
     })
   }, [router.isReady])
@@ -70,8 +65,8 @@ const Archive = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-              {maddiTazminat.map(tzm => (
-                <TableRow>
+              {maddiTazminat.map((tzm) => (
+                <TableRow key={tzm.id}>
                   <TableCell>{tzm.tazminatRapor.raporBilgileri.davaciAdi}</TableCell>
                   <TableCell>{tzm.tazminatRapor.raporBilgileri.davaliAdi}</TableCell>
                   <TableCell>{tzm.tazminatRapor.raporBilgileri.davaciVekili}</TableCell>

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import authHeader from 'src/services/AuthHeader'
+
 const API_URL = 'http://localhost:8080/api/auth/'
 
 const register = (name: string, lastName: string, email: string, password: string) => {
@@ -27,6 +28,7 @@ const login = (email: string, password: string) => {
       if (response.data.accessToken) {
         localStorage.setItem('user', JSON.stringify(response.data))
       }
+
       return response.data
     })
 }
@@ -34,7 +36,8 @@ const logout = () => {
   localStorage.removeItem('user')
 }
 const getCurrentUser = () => {
-  let item = localStorage.getItem('user')
+
+  const item = localStorage.getItem('user')
 
   if (item) return JSON.parse(item)
   else return null

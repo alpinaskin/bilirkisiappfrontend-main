@@ -12,8 +12,6 @@ const BilirkisiRapor = () => {
   }, [])
   function authCheck() {
     // redirect to login page if accessing a private page and not logged in 
-    const publicPaths = ['/login'];
-    //const path = url.split('?')[0];
     console.log(AuthService.getCurrentUser())
     if (!AuthService.getCurrentUser()) {
       router.push({
