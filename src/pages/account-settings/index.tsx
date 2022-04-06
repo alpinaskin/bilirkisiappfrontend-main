@@ -1,5 +1,5 @@
 // ** React Imports
-import { SyntheticEvent, useState, useEffect } from "react";
+import { SyntheticEvent, useState } from "react";
 
 // ** MUI Imports
 import Box from "@mui/material/Box";
@@ -18,7 +18,6 @@ import LockOpenOutline from "mdi-material-ui/LockOpenOutline";
 import InformationOutline from "mdi-material-ui/InformationOutline";
 
 // ** Demo Tabs Imports
-import TabInfo from "src/views/account-settings/TabInfo";
 import TabAccount from "src/views/account-settings/TabAccount";
 import TabSecurity from "src/views/account-settings/TabSecurity";
 

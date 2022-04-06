@@ -36,7 +36,6 @@ import EyeOffOutline from "mdi-material-ui/EyeOffOutline";
 import themeConfig from "src/configs/themeConfig";
 
 // ** Http imports
-import axios from "axios";
 import AuthService from "src/services/AuthService";
 
 // ** Layout Import
