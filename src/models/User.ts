@@ -7,6 +7,6 @@ export interface User {
 }
 
 interface role {
-  id?: number;
+  id?: number | string;
   name: string;
 }

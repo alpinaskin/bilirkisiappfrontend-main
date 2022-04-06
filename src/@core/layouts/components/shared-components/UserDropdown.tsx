@@ -17,8 +17,6 @@ import Typography from '@mui/material/Typography'
 // ** Service Imports
 import AuthService from 'src/services/AuthService'
 
-// ** Model Imports
-
 // ** Icons Imports
 import CogOutline from 'mdi-material-ui/CogOutline'
 import LogoutVariant from 'mdi-material-ui/LogoutVariant'
@@ -43,8 +41,9 @@ const UserDropdown = () => {
   const [user, setUser] = useState({name: "", lastName: "", email: "", roles: ""})
 
   useEffect(()=> {
-    setUser(AuthService.getCurrentUser())
-  }, [!user])
+    if(AuthService.getCurrentUser() != null)
+      setUser(AuthService.getCurrentUser())
+  }, [])
 
   const handleDropdownOpen = (event: SyntheticEvent) => {
     setAnchorEl(event.currentTarget)
@@ -55,6 +54,11 @@ const UserDropdown = () => {
       router.push(url)
     }
     setAnchorEl(null)
+  }
+
+  const handleLogOut = (url: string) => {
+    AuthService.logout()
+    handleDropdownClose(url)
   }
 
   const styles = {
@@ -105,7 +109,7 @@ const UserDropdown = () => {
               <Avatar alt={user.name} src='/images/avatars/1.png' sx={{ width: '2.5rem', height: '2.5rem' }} />
             </Badge>
             <Box sx={{ display: 'flex', marginLeft: 3, alignItems: 'flex-start', flexDirection: 'column' }}>
-              <Typography sx={{ fontWeight: 600 }}>{user.name} {user.lastName}</Typography>
+              <Typography sx={{ fontWeight: 600 }}>{user.name ? user.name: "" } {user.lastName ? user.lastName: ""}</Typography>
               <Typography variant='body2' sx={{ fontSize: '0.8rem', color: 'text.disabled' }}>
                 { Array.from(user.roles).pop() == 'ROLE_ADMIN' ? 'Admin' : 'Üye'}
               </Typography>
@@ -126,7 +130,7 @@ const UserDropdown = () => {
           </Box>
         </MenuItem>
         <Divider />
-        <MenuItem sx={{ py: 2 }} onClick={() => handleDropdownClose('/pages/login')}>
+        <MenuItem sx={{ py: 2 }} onClick={() => handleLogOut('/pages/login')}>
           <LogoutVariant sx={{ marginRight: 2, fontSize: '1.375rem', color: 'text.secondary' }} />
           Çıkış
         </MenuItem>

@@ -61,6 +61,6 @@ const AuthService = {
   login,
   logout,
   getCurrentUser,
-  changePassword
+  changePassword,
 }
 export default AuthService

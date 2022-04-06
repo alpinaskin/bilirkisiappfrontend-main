@@ -34,8 +34,25 @@ const Archive = () => {
     ucretTarihi: '',
     istirahatBitisTarihi: ''
   })
-  const [ucretBilgileri, setUcretBilgileri] = useState<UcretBilgileri>({})
-  const [ekBilgiler, setEkbilgiler] = useState<EkBilgiler>({})
+  const [ucretBilgileri, setUcretBilgileri] = useState<UcretBilgileri>({
+    gunlukCiplakYevmiye: 0,
+    gunlukIkramiye: 0,
+    gunlukServis: 0,
+    gunlukYemek: 0,
+    gunlukYakacak: 0,
+    gunlukDigerHaklar: 0
+  })
+  const [ekBilgiler, setEkbilgiler] = useState<EkBilgiler>({
+    davaliKusurOrani: 0,
+    maluliyetOrani: 0,
+    sgkAyligiMiktari: 0,
+    geciciIsGoremezlikMiktari: 0,
+    maddiTazminatIstek: 0,
+    kazaliCinsiyet: true,
+    kazalininCocukSayisi: 0,
+    kazalininMedeniHali: true,
+    kazalininEsiCalisiyor: true
+  })
 
   useEffect(() => {
     if (!router.isReady) return
