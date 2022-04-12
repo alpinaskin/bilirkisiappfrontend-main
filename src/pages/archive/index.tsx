@@ -9,6 +9,8 @@ import { Button, Grid, Table, TableBody, TableCell, TableHead, TableRow } from '
 const Archive = () => {
   const router = useRouter()
 
+  const [loading, setLoading] = useState(true)
+
   const [maddiTazminat, setMaddiTazminat] = useState<Array<MaddiTazminat>>([
     {
       id: 0,
@@ -35,48 +37,57 @@ const Archive = () => {
     }
   ])
 
-  const handleClick = (tazminatId:string|number) => {
+  const handleClick = (tazminatId: string | number) => {
     router.push(`/archive/${tazminatId}`)
   }
 
   useEffect(() => {
     if (!router.isReady) return
 
-    MaddiTazminatService.getAllMaddiTazminat().then(response => {
-      const maddiTazminatList = response.data._embedded.maddiTazminatList
-      console.log(maddiTazminatList)
-      setMaddiTazminat(maddiTazminatList)
-      console.log(maddiTazminat)
-    })
-  }, [maddiTazminat, router.isReady])
+    MaddiTazminatService.getAllMaddiTazminat()
+      .then(response => {
+        const maddiTazminatList = response.data._embedded.maddiTazminatList
+        setMaddiTazminat(maddiTazminatList)
+        if (response.status < 300) setLoading(false)
+      })
+      .catch(error => {
+        if (error.status >= 400) router.push('/')
+      })
+  }, [maddiTazminat, router, router.isReady])
 
   return (
     <>
-    <Grid container spacing={6}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Davacı İSMİ</TableCell>
-              <TableCell>Davalı İSMİ</TableCell>
-              <TableCell>Davacı Avukatı</TableCell>
-              <TableCell>Davalı Avukatı</TableCell>
-              <TableCell>Rapor TARİHİ</TableCell>
-              <TableCell>Seçenekler</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-              {maddiTazminat.map((tzm) => (
+      <Grid container spacing={6}>
+        {loading ? (
+          'Yükleniyor...'
+        ) : (
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Davacı İSMİ</TableCell>
+                <TableCell>Davalı İSMİ</TableCell>
+                <TableCell>Davacı Avukatı</TableCell>
+                <TableCell>Davalı Avukatı</TableCell>
+                <TableCell>Rapor TARİHİ</TableCell>
+                <TableCell>Seçenekler</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {maddiTazminat.map(tzm => (
                 <TableRow key={tzm.id}>
                   <TableCell>{tzm.tazminatRapor.raporBilgileri.davaciAdi}</TableCell>
                   <TableCell>{tzm.tazminatRapor.raporBilgileri.davaliAdi}</TableCell>
                   <TableCell>{tzm.tazminatRapor.raporBilgileri.davaciVekili}</TableCell>
                   <TableCell>{tzm.tazminatRapor.raporBilgileri.davaliVekili}</TableCell>
                   <TableCell>{tzm.tazminatRapor.tarihBilgileri.raporTarihi}</TableCell>
-                  <TableCell><Button onClick={() => handleClick(tzm.id) }>Ayrıntılı Gör</Button></TableCell>
+                  <TableCell>
+                    <Button onClick={() => handleClick(tzm.id)}>Ayrıntılı Gör</Button>
+                  </TableCell>
                 </TableRow>
               ))}
-          </TableBody>
-        </Table>
+            </TableBody>
+          </Table>
+        )}
       </Grid>
     </>
   )

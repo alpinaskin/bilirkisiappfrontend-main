@@ -36,7 +36,6 @@ const logout = () => {
   localStorage.removeItem('user')
 }
 const getCurrentUser = () => {
-
   const item = localStorage.getItem('user')
 
   if (item) return JSON.parse(item)
@@ -44,19 +43,15 @@ const getCurrentUser = () => {
 }
 
 const changePassword = (email: string, oldPassword: string, newPassword: string) => {
-  return axios
-    .post(
-      API_URL + 'changepassword',
-      {
-        email,
-        oldPassword,
-        newPassword
-      },
-      { headers: authHeader() }
-    )
-    .then(response => {
-      console.log(response)
-    })
+  return axios.post(
+    API_URL + 'changepassword',
+    {
+      email,
+      oldPassword,
+      newPassword
+    },
+    { headers: authHeader() }
+  )
 }
 
 const AuthService = {
@@ -64,6 +59,6 @@ const AuthService = {
   login,
   logout,
   getCurrentUser,
-  changePassword,
+  changePassword
 }
 export default AuthService

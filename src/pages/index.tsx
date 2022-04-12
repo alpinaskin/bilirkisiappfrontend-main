@@ -9,7 +9,6 @@ import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 
 // ** Demo Components Imports
 import Table from 'src/views/dashboard/Table'
-import SalesByCountries from 'src/views/dashboard/SalesByCountries'
 
 const Dashboard = () => {
   return (
@@ -23,7 +22,6 @@ const Dashboard = () => {
           <Table />
         </Grid>
         <Grid item xs={12} md={12} lg={12}>
-          <SalesByCountries />
         </Grid>
       </Grid>
     </ApexChartWrapper>
@@ -31,18 +29,10 @@ const Dashboard = () => {
 }
 
 export async function getServerSideProps() {
-//   const json = UserService.getRaporlar();
-//   //const json = JSON.stringify();
-//   console.log(json);
-//   return {
-//     props: {
-//       raporlar: json._embedded.tazminatRaporList
-//     }
-//   };
   return {
     redirect: {
-      destination: "/bilirkisi-rapor",
-    },
+      destination: '/pages/login'
+    }
   }
 }
 

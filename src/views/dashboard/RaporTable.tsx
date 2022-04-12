@@ -1,35 +1,33 @@
 // ** MUI Imports
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import Chip from "@mui/material/Chip";
-import Table from "@mui/material/Table";
-import TableRow from "@mui/material/TableRow";
-import TableHead from "@mui/material/TableHead";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import Typography from "@mui/material/Typography";
-import TableContainer from "@mui/material/TableContainer";
+import Card from '@mui/material/Card'
+import Chip from '@mui/material/Chip'
+import Table from '@mui/material/Table'
+import TableRow from '@mui/material/TableRow'
+import TableHead from '@mui/material/TableHead'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
 
 // ** Model imports
-import {RaporBilgileri} from "src/models/RaporBilgileri";
+import { RaporBilgileri } from 'src/models/RaporBilgileri'
 
 const rows: RaporBilgileri[] = [
   {
-    davaliAdi: "Ahmet Yılmaz",
-    davaciAdi: "Mehmet Yalkın",
-    davaciVekili: "Av. Mahmut Er",
-    davaliVekili: "Av. Ediz Akın",
-    bilirkisi: "Ahmet Gönen",
-    raporunDuzenlenecegiMakam: "Ankara 1. İş Mahkemesi",
-    esasNo: "2020/13"
+    davaliAdi: 'Ahmet Yılmaz',
+    davaciAdi: 'Mehmet Yalkın',
+    davaciVekili: 'Av. Mahmut Er',
+    davaliVekili: 'Av. Ediz Akın',
+    bilirkisi: 'Ahmet Gönen',
+    raporunDuzenlenecegiMakam: 'Ankara 1. İş Mahkemesi',
+    esasNo: '2020/13'
   }
-];
+]
 
 const RaporTable = () => {
   return (
     <Card>
       <TableContainer>
-        <Table sx={{ minWidth: 800 }} aria-label="table in dashboard">
+        <Table sx={{ minWidth: 800 }} aria-label='table in dashboard'>
           <TableHead>
             <TableRow>
               <TableCell>Davalı Adı</TableCell>
@@ -45,11 +43,7 @@ const RaporTable = () => {
 
           <TableBody>
             {rows.map((row: RaporBilgileri) => (
-              <TableRow
-                hover
-                key={row.davaliAdi}
-                sx={{ "&:last-of-type td, &:last-of-type th": { border: 0 } }}
-              >
+              <TableRow hover key={row.davaliAdi} sx={{ '&:last-of-type td, &:last-of-type th': { border: 0 } }}>
                 <TableCell>{row.davaliAdi}</TableCell>
                 <TableCell>{row.davaciAdi}</TableCell>
                 <TableCell>{row.davaliVekili}</TableCell>
@@ -59,13 +53,13 @@ const RaporTable = () => {
                 <TableCell>{row.esasNo}</TableCell>
                 <TableCell>
                   <Chip
-                    label="current"
-                    color="info"
+                    label='current'
+                    color='info'
                     sx={{
                       height: 24,
-                      fontSize: "0.75rem",
-                      textTransform: "capitalize",
-                      "& .MuiChip-label": { fontWeight: 500 }
+                      fontSize: '0.75rem',
+                      textTransform: 'capitalize',
+                      '& .MuiChip-label': { fontWeight: 500 }
                     }}
                   />
                 </TableCell>
@@ -75,7 +69,7 @@ const RaporTable = () => {
         </Table>
       </TableContainer>
     </Card>
-  );
-};
+  )
+}
 
-export default RaporTable;
+export default RaporTable

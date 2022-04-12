@@ -17,7 +17,7 @@ const getUserById = (id: any) => {
   return axios.get(API_URL + `user/${id}`, { headers: authHeader() })
 }
 const updateUser = (user: User, userId: number | string) => {
-  return axios.put(API_URL + `user/${userId}`, user, { headers: authHeader() })
+  return axios.put(API_URL + `user/update/${userId}`, user, { headers: authHeader() })
 }
 const getAdminBoard = () => {
   return axios.get(API_URL + 'admin', { headers: authHeader() })

@@ -1,25 +1,12 @@
-import React, { useCallback, useContext } from "react";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import RadioGroup from "@mui/material/RadioGroup";
-import Radio from "@mui/material/Radio";
-import FormLabel from "@mui/material/FormLabel";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormHelperText from "@mui/material/FormHelperText";
-import Checkbox from "@mui/material/Checkbox";
-import { AppContext } from "./Context";
+import React, { useCallback, useContext } from 'react'
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import { AppContext } from './Context'
 
 export default function FourthStep() {
-  const {
-    formValues,
-    handleChange,
-    handleBack,
-    handleNext,
-    variant,
-    margin
-  } = useContext(AppContext);
+  const { formValues, handleChange, handleBack, handleNext, variant, margin } = useContext(AppContext)
   const {
     davaliKusurOrani,
     maluliyetOrani,
@@ -30,7 +17,7 @@ export default function FourthStep() {
     kazalininMedeniHali,
     kazalininEsiCalisiyor,
     kazalininCocukSayisi
-  } = formValues;
+  } = formValues
 
   const isError = useCallback(
     () =>
@@ -44,11 +31,7 @@ export default function FourthStep() {
         kazalininMedeniHali,
         kazalininEsiCalisiyor,
         kazalininCocukSayisi
-      }).some(
-        (name) =>
-          (formValues[name].required && !formValues[name].value) ||
-          formValues[name].error
-      ),
+      }).some(name => (formValues[name].required && !formValues[name].value) || formValues[name].error),
     [
       formValues,
       davaliKusurOrani,
@@ -61,7 +44,7 @@ export default function FourthStep() {
       kazalininEsiCalisiyor,
       kazalininCocukSayisi
     ]
-  );
+  )
 
   return (
     <>
@@ -71,9 +54,9 @@ export default function FourthStep() {
             variant={variant}
             margin={margin}
             fullWidth
-            label="Davalı Kusur Oranı"
-            name="davaliKusurOrani"
-            type="text"
+            label='Davalı Kusur Oranı'
+            name='davaliKusurOrani'
+            type='text'
             defaultValue={davaliKusurOrani.value}
             onChange={handleChange}
             error={!!davaliKusurOrani.error}
@@ -86,9 +69,9 @@ export default function FourthStep() {
             variant={variant}
             margin={margin}
             fullWidth
-            label="Maluliyet Oranı"
-            name="maluliyetOrani"
-            type="text"
+            label='Maluliyet Oranı'
+            name='maluliyetOrani'
+            type='text'
             defaultValue={maluliyetOrani.value}
             onChange={handleChange}
             error={!!maluliyetOrani.error}
@@ -101,9 +84,9 @@ export default function FourthStep() {
             variant={variant}
             margin={margin}
             fullWidth
-            label="SGK Aylığı Peşin Değeri"
-            name="sgkAyligiPesinDegeri"
-            type="text"
+            label='SGK Aylığı Peşin Değeri'
+            name='sgkAyligiPesinDegeri'
+            type='text'
             defaultValue={sgkAyligiPesinDegeri.value}
             onChange={handleChange}
             error={!!sgkAyligiPesinDegeri.error}
@@ -116,9 +99,9 @@ export default function FourthStep() {
             variant={variant}
             margin={margin}
             fullWidth
-            label="Geçici İş Göremezlik TutarI"
-            name="geciciIsGoremezlikTutari"
-            type="text"
+            label='Geçici İş Göremezlik TutarI'
+            name='geciciIsGoremezlikTutari'
+            type='text'
             defaultValue={geciciIsGoremezlikTutari.value}
             onChange={handleChange}
             error={!!geciciIsGoremezlikTutari.error}
@@ -131,9 +114,9 @@ export default function FourthStep() {
             variant={variant}
             margin={margin}
             fullWidth
-            label="Maddi Tazminat İstek"
-            name="maddiTazminatIstek"
-            type="text"
+            label='Maddi Tazminat İstek'
+            name='maddiTazminatIstek'
+            type='text'
             defaultValue={maddiTazminatIstek.value}
             onChange={handleChange}
             error={!!maddiTazminatIstek.error}
@@ -150,8 +133,8 @@ export default function FourthStep() {
             SelectProps={{
               native: true
             }}
-            label="Kazalının Cinsiyeti"
-            name="kazaliCinsiyet"
+            label='Kazalının Cinsiyeti'
+            name='kazaliCinsiyet'
             value={kazaliCinsiyet.value}
             onChange={handleChange}
             error={!!kazaliCinsiyet.error}
@@ -159,8 +142,8 @@ export default function FourthStep() {
             required={kazaliCinsiyet.required}
           >
             <option value=''></option>
-            <option value={"true"}>Erkek</option>
-            <option value={"false"}>Kadın</option>
+            <option value={'true'}>Erkek</option>
+            <option value={'false'}>Kadın</option>
           </TextField>
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -172,17 +155,17 @@ export default function FourthStep() {
             SelectProps={{
               native: true
             }}
-            label="Kazalının Medeni Hali"
-            name="kazalininMedeniHali"
+            label='Kazalının Medeni Hali'
+            name='kazalininMedeniHali'
             value={kazalininMedeniHali.value}
             onChange={handleChange}
             error={!!kazalininMedeniHali.error}
             helperText={kazalininMedeniHali.error}
             required={kazalininMedeniHali.required}
           >
-            <option value=""> </option>
-            <option value={"false"}>Bekar</option>
-            <option value={"true"}>Evli</option>
+            <option value=''> </option>
+            <option value={'false'}>Bekar</option>
+            <option value={'true'}>Evli</option>
           </TextField>
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -194,17 +177,17 @@ export default function FourthStep() {
             SelectProps={{
               native: true
             }}
-            label="Kazalının Eşi Çalışıyor Mu?"
-            name="kazalininEsiCalisiyor"
+            label='Kazalının Eşi Çalışıyor Mu?'
+            name='kazalininEsiCalisiyor'
             value={kazalininEsiCalisiyor.value}
             onChange={handleChange}
             error={!!kazalininEsiCalisiyor.error}
             helperText={kazalininEsiCalisiyor.error}
             required={kazalininEsiCalisiyor.required}
           >
-            <option value=""> </option>
-            <option value={"false"}>Çalışmıyor</option>
-            <option value={"true"}>Çalışıyor</option>
+            <option value=''> </option>
+            <option value={'false'}>Çalışmıyor</option>
+            <option value={'true'}>Çalışıyor</option>
           </TextField>
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -212,9 +195,9 @@ export default function FourthStep() {
             variant={variant}
             margin={margin}
             fullWidth
-            label="Kazalının Çocuk Sayısı"
-            name="kazalininCocukSayisi"
-            type="text"
+            label='Kazalının Çocuk Sayısı'
+            name='kazalininCocukSayisi'
+            type='text'
             value={kazalininCocukSayisi.value}
             onChange={handleChange}
             error={!!kazalininCocukSayisi.error}
@@ -224,19 +207,14 @@ export default function FourthStep() {
         </Grid>
       </Grid>
 
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 3 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 3 }}>
         <Button onClick={handleBack} sx={{ mr: 1 }}>
           GERİ
         </Button>
-        <Button
-          variant="contained"
-          disabled={isError()}
-          color="primary"
-          onClick={!isError() ? handleNext : () => null}
-        >
+        <Button variant='contained' disabled={isError()} color='primary' onClick={!isError() ? handleNext : () => null}>
           İLERİ
         </Button>
       </Box>
     </>
-  );
+  )
 }

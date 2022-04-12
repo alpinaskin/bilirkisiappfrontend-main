@@ -4,12 +4,9 @@ import { ChangeEvent, MouseEvent, useState } from 'react'
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
-import Avatar from '@mui/material/Avatar'
-import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import InputLabel from '@mui/material/InputLabel'
 import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 import FormControl from '@mui/material/FormControl'
 import OutlinedInput from '@mui/material/OutlinedInput'
@@ -20,9 +17,12 @@ import AuthService from 'src/services/AuthService'
 
 // ** Icons Imports
 import EyeOutline from 'mdi-material-ui/EyeOutline'
-import KeyOutline from 'mdi-material-ui/KeyOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
-import LockOpenOutline from 'mdi-material-ui/LockOpenOutline'
+import Alert from '@mui/material/Alert'
+import AlertTitle from '@mui/material/AlertTitle'
+import Close from 'mdi-material-ui/Close'
+import { LoadingButton } from '@mui/lab'
+import Snackbar from '@mui/material/Snackbar'
 
 interface State {
   newPassword: string
@@ -33,8 +33,14 @@ interface State {
   showConfirmNewPassword: boolean
 }
 
+type Color = 'warning' | 'error' | 'success' | 'info' | undefined
+
 const TabSecurity = () => {
   // ** States
+  const [loading, setLoading] = useState<boolean>(false)
+  const [alertColor, setColor] = useState<Color>('warning')
+  const [isError, setIsError] = useState(false)
+  const [message, setMessage] = useState('Bir hata oluştu!')
   const [values, setValues] = useState<State>({
     newPassword: '',
     currentPassword: '',
@@ -78,11 +84,34 @@ const TabSecurity = () => {
   }
 
   const handleSubmit = () => {
-    let user;
-    if(values.newPassword == values.confirmNewPassword)
-      user = AuthService.getCurrentUser();
-      
+    setLoading(true)
+    let user
+
+    if (values.newPassword == values.confirmNewPassword) {
+      user = AuthService.getCurrentUser()
       AuthService.changePassword(user.email, values.currentPassword, values.confirmNewPassword)
+        .then(response => {
+          if (response.status < 300) {
+            setMessage('Şifreniz başarıyla değiştirildi!')
+            setColor('success')
+            setIsError(true)
+            setValues({ ...values, currentPassword: '', newPassword: '', confirmNewPassword: '' })
+          }
+        })
+        .catch(error => {
+          if (error.response) {
+            setColor('error')
+            error.response.status == 401 ? setMessage('Yanlış şifre girdiniz!') : setColor('warning')
+            setIsError(true)
+            setValues({ ...values, currentPassword: '', newPassword: '', confirmNewPassword: '' })
+          }
+        })
+    } else {
+      setColor('warning')
+      setMessage('Yeni şifrenizin aynı olduğundan emin olun!')
+      setIsError(true)
+    }
+    setLoading(false)
   }
 
   return (
@@ -176,6 +205,26 @@ const TabSecurity = () => {
           >
             <img width={183} alt='avatar' height={256} src='/images/pages/pose-m-1.png' />
           </Grid>
+
+          <Snackbar
+            open={isError}
+            autoHideDuration={6000}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            onClose={() => setIsError(false)}
+          >
+            <Alert
+              color={alertColor}
+              severity='warning'
+              sx={{ '& a': { fontWeight: 400 } }}
+              action={
+                <IconButton size='small' color='inherit' aria-label='close' onClick={() => setIsError(false)}>
+                  <Close fontSize='inherit' />
+                </IconButton>
+              }
+            >
+              <AlertTitle>{message}</AlertTitle>
+            </Alert>
+          </Snackbar>
         </Grid>
       </CardContent>
 
@@ -183,17 +232,18 @@ const TabSecurity = () => {
 
       <CardContent>
         <Box sx={{ mt: 11 }}>
-          <Button variant='contained' sx={{ marginRight: 3.5 }} onClick={handleSubmit}>
+          <LoadingButton variant='contained' sx={{ marginRight: 3.5 }} onClick={handleSubmit} loading={loading}>
             DEĞİŞİKLİKLERİ KAYDET
-          </Button>
-          <Button
+          </LoadingButton>
+          <LoadingButton
             type='reset'
             variant='outlined'
             color='secondary'
+            loading={loading}
             onClick={() => setValues({ ...values, currentPassword: '', newPassword: '', confirmNewPassword: '' })}
           >
             Sıfırla
-          </Button>
+          </LoadingButton>
         </Box>
       </CardContent>
     </form>
