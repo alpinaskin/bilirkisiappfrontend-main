@@ -1,7 +1,7 @@
 import axios from 'axios'
 import authHeader from 'src/services/AuthHeader'
 
-const API_URL = 'http://localhost:8080/api/auth/'
+const API_URL = 'https://springbilirkisiapp.herokuapp.com/api/auth/'
 
 const register = (name: string, lastName: string, email: string, password: string) => {
   console.log(name + lastName)
